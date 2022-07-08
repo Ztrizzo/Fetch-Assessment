@@ -6,7 +6,7 @@ class TransactionQueue extends Array{
   //inserts transaction into proper place in queue based on timestamp.
   insert(transaction){
     const queue = this;
-    if(!queue[0] || transaction.timestamp < queue[0].timestamp){
+    if(!queue[0] || transaction.timestamp <= queue[0].timestamp){
       queue.unshift(transaction);
       return;
     }

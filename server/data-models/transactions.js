@@ -45,6 +45,10 @@ const handleNegativeTransaction = function(transaction){
 
 }
 
+Transaction.totalAvailablePoints = () => {
+  return activeTransactions.reduce((accum, transaction) => accum + transaction.points, 0)
+}
+
 Transaction.getAll = () => {
   return activeTransactions;
 }
@@ -62,6 +66,7 @@ Transaction.spendPoints = (points) => {
     }
     //else we remove transactions in FIFO order until all points are accounted for
     else{
+
       const transaction = activeTransactions.shift();
       loggedTransactions.push(transaction);
       points -= transaction.points;

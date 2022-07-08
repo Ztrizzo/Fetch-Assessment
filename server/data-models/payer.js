@@ -17,9 +17,18 @@ class Payer{
     return numPoints;
   }
   
-
-
 }
+
+Payer.allPointBalances = () => {
+  const payers = [];
+
+  for(let payer of allPayers){
+    payers.push({[payer.name]: payer.getPointTotal()})
+  }
+
+  return payers;
+}
+
 //returns null if payer is not found
 Payer.findByName = (name) => {
   return allPayers.find(payer => payer.name === name) || null;
