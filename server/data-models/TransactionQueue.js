@@ -2,15 +2,11 @@
 //FIFO queue
 //In a production environment, I would use a linked list instead of an array because it would be more efficient.
 class TransactionQueue extends Array{
-  constructor(){
-    super();
-    this.queue = [];
-  }
 
   //inserts transaction into proper place in queue based on timestamp.
   insert(transaction){
 
-    const queue = this.queue;
+    const queue = this;
     if(!queue[0] || transaction.timestamp < queue[0].timestamp){
       queue.unshift(transaction);
       return;
@@ -30,7 +26,7 @@ class TransactionQueue extends Array{
   }
 
   peek(){
-    return this.queue[0];
+    return this[0];
   }
 }
 

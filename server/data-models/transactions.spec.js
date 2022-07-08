@@ -16,9 +16,9 @@ describe('Transaction', () => {
     })
 
     it('should add the new transaction to list of all transactions', () => {
-      const numTransactionsBefore = Transaction.getAll().queue.length;
+      const numTransactionsBefore = Transaction.getAll().length;
       new Transaction({payer: 'example 2', points: 300, timestamp: '2025-01-02T14:00:00Z'})
-      expect(Transaction.getAll().queue.length).to.equal( numTransactionsBefore + 1);
+      expect(Transaction.getAll().length).to.equal( numTransactionsBefore + 1);
     })
   })
 

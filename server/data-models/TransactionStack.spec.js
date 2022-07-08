@@ -15,7 +15,7 @@ describe('insert', () => {
   new Transaction({payer: 'Dannon', points: 300, timestamp: '2022-08-02T14:00:00Z'})
 
   it('should have a queue sorted by the timestamp', () => {
-    expect(Transaction.getAll().queue).to.be.sortedBy('timestamp');
+    expect(Transaction.getAll()).to.be.sortedBy('timestamp');
   })
 
 
