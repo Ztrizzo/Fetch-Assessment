@@ -27,9 +27,10 @@ class TransactionQueue extends Array{
         }
       }
     }
-    
+  }
 
-    
+  peek(){
+    return this.queue[0];
   }
 }
 

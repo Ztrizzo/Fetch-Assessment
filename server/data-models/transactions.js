@@ -18,18 +18,27 @@ class Transaction{
       activeTransactions.insert(this);
   }
 
-  deactivateTransaction(){
 
-  }
 
-  addTransaction(transaction){
 
-  }
 }
 
 Transaction.getAll = () => {
-  return activeTransactions.queue;
+  return activeTransactions;
 }
 
+Transaction.spendPoints = (points) => {
+  
+  
+  while(points > 0){
+    if (activeTransactions.peek().points > points){
+      activeTransactions.peek().points -= points;
+      points = 0;
+    }
+    else{
+      const transaction = activeTransactions.queue.dequeue();
+    }
+  }
+}
 
 module.exports = Transaction;
