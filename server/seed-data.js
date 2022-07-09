@@ -26,7 +26,7 @@ const randomTimestamp = () => {
 
 }
 
-
+//only seeds if run with the proper environment variable
 if(process.env.SEED){
   for(let i = 0; i < 100; i++){
     new Transaction({payer: payers[Math.floor(Math.random() * payers.length)].name, points: Math.ceil(Math.random() * 1000), timestamp: randomTimestamp()})
@@ -34,6 +34,3 @@ if(process.env.SEED){
 }
 
 
-
-
-console.log(dannon.getPointTotal());

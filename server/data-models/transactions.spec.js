@@ -40,9 +40,7 @@ describe('Transaction', () => {
     })
     it('should remove transactions in FIFO order until all points are spent', () => {
       const oldestTransaction = Transaction.getAll().peek();
-      console.log(Transaction.getAll());
       Transaction.spendPoints(5000);
-      console.log(Transaction.getAll());
       expect(oldestTransaction.id).to.not.equal(Transaction.getAll().peek().id);
     })
 

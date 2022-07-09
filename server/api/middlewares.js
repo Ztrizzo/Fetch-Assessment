@@ -1,6 +1,8 @@
 const Payer = require('../data-models/payer');
 const Transaction = require('../data-models/transactions');
 
+
+//Checks to make sure the server route was sent a valid transaction
 const validateTransactionRequest = (req, res, next) => {
   const transaction = req.body;
   let message;
@@ -14,15 +16,13 @@ const validateTransactionRequest = (req, res, next) => {
     message = 'Transaction must have points';
   else if(!transaction.timestamp)
     message = 'Transaction must have a timestamp';
-
-
   if(message)
     return res.status(400).send({message});
   
   next();
 }
 
-
+//Checks to make sure the server route was sent a valid spend request
 const validateSpendRequest = (req, res, next) => {
   let message;
   const points = req.body.points;

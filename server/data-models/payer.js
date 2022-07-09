@@ -7,8 +7,8 @@ class Payer{
     allPayers.push(this);
   }
 
+  //returns total points that the payer has
   getPointTotal(){
-
     let numPoints = 0;
     Transaction.getAll().forEach(transaction => {
       if(transaction.payer === this.name)
@@ -20,13 +20,12 @@ class Payer{
   
 }
 
+//returns all points that every payer has
 Payer.allPointBalances = () => {
   const payers = [];
-
   for(let payer of allPayers){
     payers.push({[payer.name]: payer.getPointTotal()})
   }
-
   return payers;
 }
 

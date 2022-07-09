@@ -3,6 +3,7 @@ const TransactionQueue = require('./TransactionQueue');
 const activeTransactions = new TransactionQueue();
 const loggedTransactions = [];
 
+//unique id for each transaction, starts at one
 let id = 1;
 
 class Transaction{
@@ -12,6 +13,7 @@ class Transaction{
     this.points = points;
     this.timestamp = new Date(timestamp);
 
+    //negative transactions are treated as spends
     if(points < 0){
       loggedTransactions.push(this)
       handleNegativeTransaction(this);
@@ -25,7 +27,6 @@ const handleNegativeTransaction = function(transaction){
   let points = transaction.points;
 
   for(let i = 0; i < activeTransactions.length && points < 0; i++){
-
     const activeTransaction = activeTransactions[i]
     if(transaction.payer === activeTransaction.payer){
       if(activeTransaction.points > -points){
@@ -45,10 +46,12 @@ const handleNegativeTransaction = function(transaction){
 
 }
 
+//returns total points for all transactions in the system
 Transaction.totalAvailablePoints = () => {
   return activeTransactions.reduce((accum, transaction) => accum + transaction.points, 0)
 }
 
+//returns list of all transactions
 Transaction.getAll = () => {
   return activeTransactions;
 }
@@ -66,7 +69,6 @@ Transaction.spendPoints = (points) => {
     }
     //else we remove transactions in FIFO order until all points are accounted for
     else{
-
       const transaction = activeTransactions.shift();
       loggedTransactions.push(transaction);
       points -= transaction.points;
