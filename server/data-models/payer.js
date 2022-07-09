@@ -8,6 +8,7 @@ class Payer{
   }
 
   getPointTotal(){
+
     let numPoints = 0;
     Transaction.getAll().forEach(transaction => {
       if(transaction.payer === this.name)

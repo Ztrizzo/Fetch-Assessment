@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha server/**/*.spec.js --watch",
-    "start:dev": "nodemon ./server/index.js"
+    "start:dev": "nodemon ./server/index.js",
+    "start:dev:seed": "SEED=true nodemon ./server/index.js",
+    "start:seed": "SEED=true node ./server",
+    "start": "node ./server"
   },
   "keywords": [],
   "author": "",

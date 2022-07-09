@@ -2,16 +2,14 @@ const router = require('express').Router();
 const Transaction = require('../data-models/transactions');
 const Payer = require('../data-models/payer');
 const { validateTransactionRequest, validateSpendRequest } = require('./middlewares');
+require('../seed-data.js');
+
+
+
 module.exports = router;
 
 
-//List of all valid payers
-new Payer('DANNON');
-new Payer('UNILEVER');
-new Payer('MILLER COORS');
-new Payer('GENERAL MILLS');
-new Payer('DOLE');
-new Payer('YOPLAIT');
+
 
 router.post('/addTransaction', validateTransactionRequest, async (req, res, next) => {
   try{
