@@ -21,7 +21,7 @@ describe('Transaction', () => {
       expect(Transaction.getAll().length).to.equal( numTransactionsBefore + 1);
     })
 
-    it('should hanlde negative transactions', () => {
+    it('should handle negative transactions', () => {
       new Transaction({payer: 'example 3' , points: 400, timestamp: '2024-01-02T14:00:00Z'});
       new Transaction({payer: 'example 3' , points: 500, timestamp: '2010-01-12T14:00:00Z'});
       new Transaction({payer: 'example 3' , points: 100, timestamp: '2022-01-13T14:00:00Z'});
@@ -44,11 +44,11 @@ describe('Transaction', () => {
       expect(oldestTransaction.id).to.not.equal(Transaction.getAll().peek().id);
     })
 
-    it('should return with an array of all points spent', () => {
+    it('should return with an object with all points spent', () => {
 
       const response = Transaction.spendPoints(4000);
       expect(response).to.be.a('array');
-      expect(response.length).to.be.greaterThan(1);
+      expect(Object.keys(response).length).to.be.greaterThan(1);
     })
 
   })

@@ -88,7 +88,7 @@ describe('spendPoints', () => {
       
       res.should.have.status(201);
       res.body.should.be.a('array');
-      res.body.length.should.equal(4);
+      Object.keys(res.body).length.should.equal(3);
     })
   })
 })
