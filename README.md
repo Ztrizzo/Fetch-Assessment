@@ -10,7 +10,7 @@
 - LinkedIn: https://www.linkedin.com/in/zacharyrizzo/
 - Github: https://github.com/Ztrizzo
 
----
+
 
 ## How to Install
 1. Clone this repository into a directory, then navigate to this project's root folder. You must have Node and npm installed on your machine for this application to run.
@@ -28,7 +28,7 @@
 ```
   npm start:seed
 ```
----
+
 ## Server requests
 
   The server will accept HTTP requests with JSON objects and will run on localhost://8080 by default.
@@ -101,7 +101,6 @@
     }  
 ]  
 
----
 
 ## Technologies
 To complete this assessment, I used: Node.js, Express.js, Mocha.js, Chai.js

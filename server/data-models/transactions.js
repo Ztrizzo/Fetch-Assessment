@@ -57,14 +57,16 @@ Transaction.getAll = () => {
 }
 
 Transaction.spendPoints = (points) => {
-  const allSpends = [];
+  const allSpends = {};
   while(points > 0){
     const oldestTransaction = activeTransactions.peek() 
 
     //if the oldest transaction has enough points, we just decrease the points from that transaction
     if (oldestTransaction.points > points){
       oldestTransaction.points -= points;
-      allSpends.push({payer: oldestTransaction.payer, points: -points })
+      // allSpends.push({payer: oldestTransaction.payer, points: -points })
+      if(allSpends[oldestTransaction.payer]) allSpends[oldestTransaction.payer] += -points;
+      else allSpends[oldestTransaction.payer] = -points;
       points = 0;
     }
     //else we remove transactions in FIFO order until all points are accounted for
@@ -72,11 +74,14 @@ Transaction.spendPoints = (points) => {
       const transaction = activeTransactions.shift();
       loggedTransactions.push(transaction);
       points -= transaction.points;
-      allSpends.push({payer: transaction.payer, points: -transaction.points});
+      // allSpends.push({payer: transaction.payer, points: -transaction.points});
+      if(allSpends[transaction.payer]) allSpends[transaction.payer] += -transaction.points;
+      else allSpends[transaction.payer] = -transaction.points;
     }
   }
 
-  return allSpends;
+  //Turn response into an array of objects
+  return Object.keys(allSpends).map(key => {return {payer: key, points: allSpends[key]}});
 }
 
 module.exports = Transaction;
